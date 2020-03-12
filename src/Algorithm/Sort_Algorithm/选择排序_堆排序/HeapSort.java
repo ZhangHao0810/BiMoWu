@@ -26,11 +26,15 @@ public class HeapSort {
         for (int i = 0; i < a.length; i++) {
 //            一个一个的将数组元素创建小顶堆
             obj.createLittleHeap(a, a.length - 1 - i);
+            System.out.println("#######");
+            obj.print(a);
+            System.out.println();
 //            每次循环完,二叉树的根节点都是最小值
-//
+//            将根节点放置在最后的位置. 即小顶堆的顶部放到了最后元素,最后输出就是从大到小.
             obj.swap(a, 0, a.length - 1 - i);
 //
             obj.print(a);
+            System.out.println("#######");
             System.out.println();
         }
         System.out.println("\n排序后:");
@@ -43,6 +47,9 @@ public class HeapSort {
      * 双亲节点小于子节点的值.从叶子节点开始,直到根节点.
      * <p>
      * last : 合理树的最后一个元素.
+     *
+     *   一定要记住, 堆排序不是建立一个堆,内部的数组就是排好序了, 只不过满足父亲比两个孩子小,其他都不保证,
+     *    所以每次创建堆,能得到小顶或者大顶堆, 确定堆顶的元素是所有元素的最小或者最大值.  就像冒泡排序一样.
      */
     private void createLittleHeap(int[] data, int last) {
 //        从last的双亲倒着遍历到根节点.
@@ -56,13 +63,13 @@ public class HeapSort {
                 int bigger = 2 * parent + 1;
                 //如果左子节点索引比最后小,说明存在右子节点
                 if (bigger < last) {
-                    //右子节点>左子节点时
-                    if (data[bigger] < data[bigger+1]) {
+                    //右子节点<左子节点时
+                    if (data[bigger] > data[bigger+1]) {
                         bigger++;
                     }
                 }
-                if (data[parent] < data[bigger]) {
-                    //若双亲节点值小于子节点中最大的,交换两者,让父节点成为小的那个.
+                if (data[parent] > data[bigger]) {
+                    //若双亲节点值大于子节点中最大的,交换两者,让父节点成为小的那个.
                     swap(data, parent, bigger);
                     parent = bigger;
                 } else {
@@ -75,7 +82,6 @@ public class HeapSort {
     public void print(int[] a) {
         for (int i = 0; i < a.length; i++) {
             System.out.print(a[i] + " ");
-
         }
         System.out.println();
 

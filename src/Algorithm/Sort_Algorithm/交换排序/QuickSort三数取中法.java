@@ -13,14 +13,24 @@ public class QuickSort三数取中法 {
         System.out.println("Start:");
         obj.print(a);
         int h=a.length-1;
-        sort(a, 0, h);
+        quickSort(a, 0, h);
         System.out.println("After:");
         obj.print(a);
     }
 
 
+    public static void quickSort(int[] array, int lo, int hi) {
+        if (lo >= hi) {
+            return;
+        }
+//        获得基准值合适位置的索引.
+        int index = partition(array, lo, hi);
+        quickSort(array, lo, index - 1);
+        quickSort(array, index + 1, hi);
+    }
+
     public static int partition(int[] array, int lo, int hi) {
-//        三数取中. 就是把两边和中间这三个数排好序.
+//        三数取中就是 将"段"的两端与中间元素三数排序 之后再getMiddle 也就是返回基准(首位)元素的合适位置.
         int mid = lo + (hi - lo) / 2;
         if (array[mid] > array[hi]) {
             swap(array[mid], array[hi]);
@@ -56,14 +66,7 @@ public class QuickSort三数取中法 {
         b = temp;
     }
 
-    public static void sort(int[] array, int lo, int hi) {
-        if (lo >= hi) {
-            return;
-        }
-        int index = partition(array, lo, hi);
-        sort(array, lo, index - 1);
-        sort(array, index + 1, hi);
-    }
+
 
     private void print(int a[]) {
         for (int i = 0; i < a.length; i++) {
