@@ -8,10 +8,10 @@ import java.util.ArrayList;
  * @Description： n大 k小的时候. 求一个数组的前k个最小值.
  */
 
-public class Solution2 {
+public class 求数组前k个最小数_n大k小_递归 {
     public static void main(String[] args) {
         int[] str = {7, 3, 8, 11, 12, 13, 15, 4, 5, 1, 6, 2, 16, 17, 18, 24, 26, 28, 29, 31, 33};
-        Solution2 s = new Solution2();
+        求数组前k个最小数_n大k小_递归 s = new 求数组前k个最小数_n大k小_递归();
         System.out.print(s.getLeastNumbers(str, 4));
     }
 
@@ -46,26 +46,30 @@ public class Solution2 {
      * 构建最大堆.
      *
      * @param input
-     * @param i 从0 开始.
+     * @param i 从0 开始. 代表父亲. k表示限制.
      * @param k
+     *
+     *      函数每次调用只关注一个父亲和俩孩子, 但是函数内部有递归,
      */
     public void buildMaxHeapSort(int[] input, int i, int k) {
+
         int leftchild = 2 * i + 1;
         int rightchild = 2 * i + 2;
-        int larget = i;
+        // large 最大的插旗.
+        int large = i;
 
 //        将前k个元素, i的孩子 如果比i 大的话, 赋值给最大的插旗.
 
         if (leftchild < k && input[i] < input[leftchild]) {
-            larget = leftchild;
+            large = leftchild;
         }
-        if (rightchild < k && input[larget] < input[rightchild]) {
-            larget = rightchild;
+        if (rightchild < k && input[large] < input[rightchild]) {
+            large = rightchild;
         }
-//        孩子比父亲大的话,就换一下. 之后递归,所以就能把前k个元素从大到小排序.
-        if (larget != i) {
-            swap(input, i, larget);
-            buildMaxHeapSort(input, larget, k);
+//        孩子比父亲大的话,就换一下. 此时还不能确定是大顶堆, 之后递归,所以就能把前k个元素从大到小排序.
+        if (large != i) {
+            swap(input, i, large);
+            buildMaxHeapSort(input, large, k);
         }
     }
 

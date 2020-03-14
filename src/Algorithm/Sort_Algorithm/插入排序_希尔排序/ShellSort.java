@@ -1,10 +1,10 @@
-package Algorithm.Sort_Algorithm.直接排序_希尔排序;
+package Algorithm.Sort_Algorithm.插入排序_希尔排序;
 
 /**
  * @author ZhangHao
  * @date 2020/3/7 21:04
  * @Description： 插入排序之 希尔排序
- *
+ *      普通的插入排序,即将每一个元素插入已排好序的序列中, 循环判定每一个元素. O(n^2)
  * 从小到大排序.
  */
 public class ShellSort {
