@@ -1,4 +1,4 @@
-package Algorithm.Sort_Algorithm.归并排序;
+package Algorithm.二_Sort_Algorithm.归并排序;
 
 /**
  * @author ZhangHao

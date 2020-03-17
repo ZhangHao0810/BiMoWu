@@ -1,4 +1,4 @@
-package Algorithm.Sort_Algorithm.插入排序_希尔排序;
+package Algorithm.二_Sort_Algorithm.插入排序_希尔排序;
 
 /**
  * @author ZhangHao
